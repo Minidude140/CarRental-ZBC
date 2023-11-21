@@ -25,7 +25,7 @@ Option Compare Binary
 
 '[]Display:
 '{}distance traveled in miles
-'{}total millage charge as currency
+'{}total mileage charge as currency
 '{}total daily charge as currency
 '{}total discount as currency
 '{}total charges as currency
@@ -188,21 +188,21 @@ Public Class RentalForm
     ''' <param name="startPoint"></param>
     ''' <param name="endPoint"></param>
     ''' <returns></returns>
-    Function DistanceTraveled(startPoint As Integer, endPoint As Integer) As Integer
+    Function CalculateDistanceTraveled(startPoint As Integer, endPoint As Integer) As Integer
         Dim distance As Integer
         distance = startPoint - endPoint
         Return distance
     End Function
 
     ''' <summary>
-    ''' Returns the millage charge for a given distance
+    ''' Returns the mileage charge for a given distance
     ''' </summary>
     ''' <param name="distance"></param>
     ''' <returns></returns>
-    Function CalcluateMillageCharge(distance As Integer) As Integer
-        Dim millageCharge As Integer
+    Function CalculateMileageCharge(distance As Integer) As Integer
+        Dim mileageCharge As Integer
         'calculate charge based on distance here
-        Return millageCharge
+        Return mileageCharge
     End Function
 
     ''' <summary>
@@ -210,6 +210,10 @@ Public Class RentalForm
     ''' </summary>
     Sub CalculateAllCharges()
         Dim daysCharge As Integer
+        Dim startOdometer As Integer = CInt(Me.BeginOdometerTextBox.Text)
+        Dim endOdometer As Integer = CInt(Me.EndOdometerTextBox.Text)
+        Dim distanceDriven As Integer
+        Dim mileageCharge As Integer
         If KilometersradioButton.Checked = True Then
             'convert to miles
         End If
@@ -217,6 +221,12 @@ Public Class RentalForm
         'calculate days charge and update output text box
         daysCharge = CalculateDaysCharge(CInt(Me.DaysTextBox.Text))
         DayChargeTextBox.Text = CStr(daysCharge)
+        'Determine distance driven
+        distanceDriven = CalculateDistanceTraveled(startOdometer, endOdometer)
+        TotalMilesTextBox.Text = CStr(distanceDriven)
+        'Calculate millage charge and update output text box
+        mileageCharge = CalculateMileageCharge(distanceDriven)
+        MileageChargeTextBox.Text = CStr(mileageCharge)
     End Sub
 
     'Event Handlers
