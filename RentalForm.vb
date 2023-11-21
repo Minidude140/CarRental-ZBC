@@ -173,13 +173,36 @@ Public Class RentalForm
     End Function
 
     ''' <summary>
-    ''' Calculate Total cost over a given number days at $15/Day
+    ''' Returns Total cost over a given number days at $15/Day
     ''' </summary>
     ''' <returns></returns>
     Function CalculateDaysCharge(numberOfDays As Integer) As Integer
         Dim daysCharge As Integer
         daysCharge = numberOfDays * 15
         Return daysCharge
+    End Function
+
+    ''' <summary>
+    ''' Returns the difference of endPoint to startPoint 
+    ''' </summary>
+    ''' <param name="startPoint"></param>
+    ''' <param name="endPoint"></param>
+    ''' <returns></returns>
+    Function DistanceTraveled(startPoint As Integer, endPoint As Integer) As Integer
+        Dim distance As Integer
+        distance = startPoint - endPoint
+        Return distance
+    End Function
+
+    ''' <summary>
+    ''' Returns the millage charge for a given distance
+    ''' </summary>
+    ''' <param name="distance"></param>
+    ''' <returns></returns>
+    Function CalcluateMillageCharge(distance As Integer) As Integer
+        Dim millageCharge As Integer
+        'calculate charge based on distance here
+        Return millageCharge
     End Function
 
     'Event Handlers
