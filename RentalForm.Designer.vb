@@ -232,7 +232,7 @@ Partial Class RentalForm
         Me.OdometerGroupbox.Name = "OdometerGroupbox"
         Me.OdometerGroupbox.Padding = New System.Windows.Forms.Padding(4)
         Me.OdometerGroupbox.Size = New System.Drawing.Size(416, 103)
-        Me.OdometerGroupbox.TabIndex = 8
+        Me.OdometerGroupbox.TabIndex = 2
         Me.OdometerGroupbox.TabStop = False
         Me.OdometerGroupbox.Text = "Is Odometer In Miles Or Kilometers?"
         '
@@ -270,7 +270,7 @@ Partial Class RentalForm
         Me.DiscountGroupbox.Name = "DiscountGroupbox"
         Me.DiscountGroupbox.Padding = New System.Windows.Forms.Padding(4)
         Me.DiscountGroupbox.Size = New System.Drawing.Size(320, 103)
-        Me.DiscountGroupbox.TabIndex = 9
+        Me.DiscountGroupbox.TabIndex = 3
         Me.DiscountGroupbox.TabStop = False
         Me.DiscountGroupbox.Text = "Enter Any Discounts"
         '
@@ -558,7 +558,7 @@ Partial Class RentalForm
         Me.CustomerInputGroupBox.Location = New System.Drawing.Point(10, 41)
         Me.CustomerInputGroupBox.Name = "CustomerInputGroupBox"
         Me.CustomerInputGroupBox.Size = New System.Drawing.Size(346, 282)
-        Me.CustomerInputGroupBox.TabIndex = 41
+        Me.CustomerInputGroupBox.TabIndex = 1
         Me.CustomerInputGroupBox.TabStop = False
         '
         'RentalForm
