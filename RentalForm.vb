@@ -172,6 +172,16 @@ Public Class RentalForm
         Return isValid
     End Function
 
+    ''' <summary>
+    ''' Calculate Total cost over a given number days at $15/Day
+    ''' </summary>
+    ''' <returns></returns>
+    Function CalculateDaysCharge(numberOfDays As Integer) As Integer
+        Dim daysCharge As Integer
+        daysCharge = numberOfDays * 15
+        Return daysCharge
+    End Function
+
     'Event Handlers
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
@@ -185,7 +195,9 @@ Public Class RentalForm
             'Check odometer readings
             If CheckOdemeter() Then
                 'Check days
-                CheckDays()
+                If CheckDays() Then
+                    'Run calculations
+                End If
             End If
         End If
 
