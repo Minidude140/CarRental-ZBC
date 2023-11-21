@@ -11,7 +11,7 @@ Option Compare Binary
 'TODO
 '[~]fix order of text box response
 '[]Finish user input validation **See Below**
-'{}checkOdometer *beginning Odometer should not be greater than ending odometer
+'{~}checkOdometer *beginning Odometer should not be greater than ending odometer
 '{}CheckDays *day greater than 0 no more than 45
 
 '[]Calculations:
@@ -67,6 +67,7 @@ Public Class RentalForm
         'Select Miles RadioButton
         MilesradioButton.Checked = True
     End Sub
+
     ''' <summary>
     ''' Checks that each text field has something entered
     ''' </summary>
@@ -89,6 +90,45 @@ Public Class RentalForm
         End If
         Return isValid
     End Function
+
+    ''' <summary>
+    ''' Checks if Beginning and End odometer readings are numbers and end larger than beginning
+    ''' </summary>
+    ''' <returns></returns>
+    Function CheckOdemeter() As Boolean
+        Dim isValid As Boolean = True
+        Dim errorMessage As String = ""
+        Dim beginOdometer As Integer
+        Dim endOdometer As Integer
+        'try to convert BeginOdometerTextBox contents to integer
+        Try
+            beginOdometer = CInt(BeginOdometerTextBox.Text)
+        Catch ex As Exception
+            errorMessage = "Beginning Odometer Reading Must be a Whole Number" & vbCrLf
+            BeginOdometerTextBox.Focus()
+            BeginOdometerTextBox.Text = ""
+        End Try
+        'Try to convert EndOdometerTextBox content to integer
+        Try
+            endOdometer = CInt(EndOdometerTextBox.Text)
+        Catch ex As Exception
+            errorMessage &= "Ending Odometer Reading Must be a Whole Number" & vbCrLf
+            EndOdometerTextBox.Focus()
+            EndOdometerTextBox.Text = ""
+            isValid = False
+        End Try
+        'Check if begin odometer is larger than end
+        If beginOdometer > endOdometer Then
+            isValid = False
+            errorMessage = "Ending Odometer Reading must be larger than Beginning Odometer Reading"
+            BeginOdometerTextBox.Focus()
+        End If
+        'if error message is not empty report message to user
+        If errorMessage <> "" Then
+            MsgBox(errorMessage)
+        End If
+        Return isValid
+    End Function
     'Event Handlers
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
@@ -99,6 +139,10 @@ Public Class RentalForm
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         If ValidateUserInput() Then
             'all text boxes full start to check content of boxes
+            'Check odometer readings
+            If CheckOdemeter() Then
+                'Check days
+            End If
         End If
 
     End Sub
