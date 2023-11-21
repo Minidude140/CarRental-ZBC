@@ -205,6 +205,20 @@ Public Class RentalForm
         Return millageCharge
     End Function
 
+    ''' <summary>
+    ''' Calculates all charges based on text box info.  Should only Run if input already validated 
+    ''' </summary>
+    Sub CalculateAllCharges()
+        Dim daysCharge As Integer
+        If KilometersradioButton.Checked = True Then
+            'convert to miles
+        End If
+        'already in miles or now converted
+        'calculate days charge and update output text box
+        daysCharge = CalculateDaysCharge(CInt(Me.DaysTextBox.Text))
+        DayChargeTextBox.Text = CStr(daysCharge)
+    End Sub
+
     'Event Handlers
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
@@ -220,6 +234,7 @@ Public Class RentalForm
                 'Check days
                 If CheckDays() Then
                     'Run calculations
+                    CalculateAllCharges()
                 End If
             End If
         End If
