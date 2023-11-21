@@ -9,14 +9,15 @@ Option Strict On
 Option Compare Binary
 
 'TODO
-'[]fix order of textbox response
+'[~]fix order of text box response
+'[]
 Public Class RentalForm
     'Custom Methods
 
     ''' <summary>
     ''' Checks that each text field has something entered
     ''' </summary>
-    Sub ValidateUserInput()
+    Function ValidateUserInput() As Boolean
         Dim isValid As Boolean = True
         Dim errorMessage As String
         'checks if each text box is empty
@@ -33,12 +34,16 @@ Public Class RentalForm
         If errorMessage <> "" Then
             MsgBox(errorMessage)
         End If
-    End Sub
+        Return isValid
+    End Function
     'Event Handlers
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
-        ValidateUserInput()
+        If ValidateUserInput() Then
+            'all text boxes full start to check content of boxes
+        End If
+
     End Sub
 End Class
