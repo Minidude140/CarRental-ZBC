@@ -190,7 +190,7 @@ Public Class RentalForm
     ''' <returns></returns>
     Function CalculateDistanceTraveled(startPoint As Integer, endPoint As Integer) As Integer
         Dim distance As Integer
-        distance = startPoint - endPoint
+        distance = endPoint - startPoint
         Return distance
     End Function
 
