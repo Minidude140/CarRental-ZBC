@@ -10,9 +10,9 @@ Option Compare Binary
 
 'TODO
 '[~]fix order of text box response
-'[]Finish user input validation **See Below**
+'[~]Finish user input validation **See Below**
 '{~}checkOdometer *beginning Odometer should not be greater than ending odometer
-'{}CheckDays *day greater than 0 no more than 45
+'{~}CheckDays *day greater than 0 no more than 45
 
 '[]Calculations:
 '[]Daily Charge is 15$ per day
@@ -104,7 +104,8 @@ Public Class RentalForm
         Try
             beginOdometer = CInt(BeginOdometerTextBox.Text)
         Catch ex As Exception
-            errorMessage = "Beginning Odometer Reading Must be a Whole Number" & vbCrLf
+            'beginning odometer not a number
+            errorMessage = "Beginning Odometer Reading Must be a Number" & vbCrLf
             BeginOdometerTextBox.Focus()
             BeginOdometerTextBox.Text = ""
         End Try
@@ -112,23 +113,65 @@ Public Class RentalForm
         Try
             endOdometer = CInt(EndOdometerTextBox.Text)
         Catch ex As Exception
-            errorMessage &= "Ending Odometer Reading Must be a Whole Number" & vbCrLf
+            'ending odometer not a number
+            errorMessage &= "Ending Odometer Reading Must be a Number" & vbCrLf
             EndOdometerTextBox.Focus()
             EndOdometerTextBox.Text = ""
             isValid = False
         End Try
-        'Check if begin odometer is larger than end
-        If beginOdometer > endOdometer Then
-            isValid = False
-            errorMessage = "Ending Odometer Reading must be larger than Beginning Odometer Reading"
-            BeginOdometerTextBox.Focus()
+        'Check if begin odometer is larger than end if exception was not already raised
+        If isValid Then
+            If beginOdometer > endOdometer Then
+                isValid = False
+                errorMessage = "Ending Odometer Reading must be larger than Beginning Odometer Reading"
+                BeginOdometerTextBox.Focus()
+                'if error message is not empty report message to user
+            End If
         End If
-        'if error message is not empty report message to user
         If errorMessage <> "" Then
             MsgBox(errorMessage)
         End If
         Return isValid
     End Function
+
+    ''' <summary>
+    ''' Checks if number of days is between 1 and 45 days
+    ''' </summary>
+    ''' <returns></returns>
+    Function CheckDays() As Boolean
+        Dim isValid As Boolean = True
+        Dim errorMessage As String = ""
+        Dim numberOfDays As Integer
+        'try to convert DaysTextBox contents to integer
+        Try
+            numberOfDays = CInt(DaysTextBox.Text)
+        Catch ex As Exception
+            'number of days not a number
+            isValid = False
+            DaysTextBox.Text = ""
+            DaysTextBox.Focus()
+            errorMessage = "Number of Days must be a Number"
+        End Try
+        'Check if number of days is in acceptable range (1-45) if exception was not already raised
+        If isValid Then
+            Select Case numberOfDays
+                Case 1 To 45
+                    'number of days is in acceptable range
+                Case Else
+                    'number of days is not in acceptable range
+                    isValid = False
+                    DaysTextBox.Text = ""
+                    DaysTextBox.Focus()
+                    errorMessage = "Number of Days must be more than 0 and no more than 45"
+            End Select
+        End If
+        'if errorMessage is not empty report message to user
+        If errorMessage <> "" Then
+            MsgBox(errorMessage)
+        End If
+        Return isValid
+    End Function
+
     'Event Handlers
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
@@ -142,6 +185,7 @@ Public Class RentalForm
             'Check odometer readings
             If CheckOdemeter() Then
                 'Check days
+                CheckDays()
             End If
         End If
 
