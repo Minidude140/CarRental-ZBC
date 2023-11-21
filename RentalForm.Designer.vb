@@ -78,6 +78,14 @@ Partial Class RentalForm
         Me.CustomerInputGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
+        'NameTextBox
+        '
+        Me.NameTextBox.Location = New System.Drawing.Point(203, 10)
+        Me.NameTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.NameTextBox.Name = "NameTextBox"
+        Me.NameTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.NameTextBox.TabIndex = 0
+        '
         'NameLabel
         '
         Me.NameLabel.AutoSize = True
@@ -87,6 +95,14 @@ Partial Class RentalForm
         Me.NameLabel.Size = New System.Drawing.Size(109, 17)
         Me.NameLabel.TabIndex = 0
         Me.NameLabel.Text = "Customer Name"
+        '
+        'AddressTextBox
+        '
+        Me.AddressTextBox.Location = New System.Drawing.Point(203, 45)
+        Me.AddressTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.AddressTextBox.Name = "AddressTextBox"
+        Me.AddressTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.AddressTextBox.TabIndex = 1
         '
         'AddressLabel
         '
@@ -98,6 +114,14 @@ Partial Class RentalForm
         Me.AddressLabel.TabIndex = 2
         Me.AddressLabel.Text = "Address"
         '
+        'CityTextBox
+        '
+        Me.CityTextBox.Location = New System.Drawing.Point(203, 79)
+        Me.CityTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.CityTextBox.Name = "CityTextBox"
+        Me.CityTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.CityTextBox.TabIndex = 2
+        '
         'CityLabel
         '
         Me.CityLabel.AutoSize = True
@@ -107,6 +131,14 @@ Partial Class RentalForm
         Me.CityLabel.Size = New System.Drawing.Size(31, 17)
         Me.CityLabel.TabIndex = 4
         Me.CityLabel.Text = "City"
+        '
+        'StateTextBox
+        '
+        Me.StateTextBox.Location = New System.Drawing.Point(203, 113)
+        Me.StateTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.StateTextBox.Name = "StateTextBox"
+        Me.StateTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.StateTextBox.TabIndex = 3
         '
         'State4
         '
@@ -118,6 +150,14 @@ Partial Class RentalForm
         Me.State4.TabIndex = 6
         Me.State4.Text = "State"
         '
+        'ZipCodeTextBox
+        '
+        Me.ZipCodeTextBox.Location = New System.Drawing.Point(203, 148)
+        Me.ZipCodeTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.ZipCodeTextBox.Name = "ZipCodeTextBox"
+        Me.ZipCodeTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.ZipCodeTextBox.TabIndex = 4
+        '
         'ZipCodeLabel
         '
         Me.ZipCodeLabel.AutoSize = True
@@ -127,6 +167,14 @@ Partial Class RentalForm
         Me.ZipCodeLabel.Size = New System.Drawing.Size(65, 17)
         Me.ZipCodeLabel.TabIndex = 8
         Me.ZipCodeLabel.Text = "Zip Code"
+        '
+        'BeginOdometerTextBox
+        '
+        Me.BeginOdometerTextBox.Location = New System.Drawing.Point(203, 182)
+        Me.BeginOdometerTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.BeginOdometerTextBox.Name = "BeginOdometerTextBox"
+        Me.BeginOdometerTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.BeginOdometerTextBox.TabIndex = 5
         '
         'BeginOdometerLabel
         '
@@ -138,6 +186,14 @@ Partial Class RentalForm
         Me.BeginOdometerLabel.TabIndex = 10
         Me.BeginOdometerLabel.Text = "Beginning Odometer Reading"
         '
+        'EndOdometerTextBox
+        '
+        Me.EndOdometerTextBox.Location = New System.Drawing.Point(203, 217)
+        Me.EndOdometerTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.EndOdometerTextBox.Name = "EndOdometerTextBox"
+        Me.EndOdometerTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.EndOdometerTextBox.TabIndex = 6
+        '
         'EndOdometerLabel
         '
         Me.EndOdometerLabel.AutoSize = True
@@ -148,6 +204,14 @@ Partial Class RentalForm
         Me.EndOdometerLabel.TabIndex = 12
         Me.EndOdometerLabel.Text = "Ending Odometer Reading"
         '
+        'DaysTextBox
+        '
+        Me.DaysTextBox.Location = New System.Drawing.Point(203, 251)
+        Me.DaysTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.DaysTextBox.Name = "DaysTextBox"
+        Me.DaysTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.DaysTextBox.TabIndex = 7
+        '
         'DaysLabel
         '
         Me.DaysLabel.AutoSize = True
@@ -157,70 +221,6 @@ Partial Class RentalForm
         Me.DaysLabel.Size = New System.Drawing.Size(113, 17)
         Me.DaysLabel.TabIndex = 14
         Me.DaysLabel.Text = "Number Of Days"
-        '
-        'NameTextBox
-        '
-        Me.NameTextBox.Location = New System.Drawing.Point(203, 10)
-        Me.NameTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.NameTextBox.Name = "NameTextBox"
-        Me.NameTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.NameTextBox.TabIndex = 0
-        '
-        'AddressTextBox
-        '
-        Me.AddressTextBox.Location = New System.Drawing.Point(203, 45)
-        Me.AddressTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.AddressTextBox.Name = "AddressTextBox"
-        Me.AddressTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.AddressTextBox.TabIndex = 1
-        '
-        'CityTextBox
-        '
-        Me.CityTextBox.Location = New System.Drawing.Point(203, 79)
-        Me.CityTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.CityTextBox.Name = "CityTextBox"
-        Me.CityTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.CityTextBox.TabIndex = 2
-        '
-        'StateTextBox
-        '
-        Me.StateTextBox.Location = New System.Drawing.Point(203, 113)
-        Me.StateTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.StateTextBox.Name = "StateTextBox"
-        Me.StateTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.StateTextBox.TabIndex = 3
-        '
-        'ZipCodeTextBox
-        '
-        Me.ZipCodeTextBox.Location = New System.Drawing.Point(203, 148)
-        Me.ZipCodeTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.ZipCodeTextBox.Name = "ZipCodeTextBox"
-        Me.ZipCodeTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.ZipCodeTextBox.TabIndex = 4
-        '
-        'BeginOdometerTextBox
-        '
-        Me.BeginOdometerTextBox.Location = New System.Drawing.Point(203, 182)
-        Me.BeginOdometerTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.BeginOdometerTextBox.Name = "BeginOdometerTextBox"
-        Me.BeginOdometerTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.BeginOdometerTextBox.TabIndex = 5
-        '
-        'EndOdometerTextBox
-        '
-        Me.EndOdometerTextBox.Location = New System.Drawing.Point(203, 217)
-        Me.EndOdometerTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.EndOdometerTextBox.Name = "EndOdometerTextBox"
-        Me.EndOdometerTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.EndOdometerTextBox.TabIndex = 6
-        '
-        'DaysTextBox
-        '
-        Me.DaysTextBox.Location = New System.Drawing.Point(203, 251)
-        Me.DaysTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.DaysTextBox.Name = "DaysTextBox"
-        Me.DaysTextBox.Size = New System.Drawing.Size(132, 22)
-        Me.DaysTextBox.TabIndex = 7
         '
         'OdometerGroupbox
         '
