@@ -226,6 +226,12 @@ Public Class RentalForm
         Dim distanceDriven As Double
         Dim mileageCharge As Double
         Const kilometerToMilesRatio As Double = 0.62
+        Const AAAMemberDiscount As Double = 0.05
+        Const seniorCitizensDiscount As Double = 0.03
+        Dim totalCharge As Double
+        Dim totalChargeAppliedDiscount As Double
+        Dim discountTotal As Double
+
         If KilometersradioButton.Checked = True Then
             'convert to miles
             startOdometer = startOdometer / kilometerToMilesRatio
@@ -241,6 +247,16 @@ Public Class RentalForm
         'Calculate millage charge and update output text box
         mileageCharge = CalculateMileageCharge(distanceDriven)
         MileageChargeTextBox.Text = FormatCurrency(mileageCharge)
+        'Add to total charge
+        totalCharge = daysCharge + mileageCharge
+        'determine discounts
+        If AAAcheckbox.Checked = True Then
+            'AAA discount
+        End If
+        If Seniorcheckbox.Checked = True Then
+            'senior discount
+        End If
+
     End Sub
 
     'Event Handlers
