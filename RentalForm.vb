@@ -14,33 +14,36 @@ Option Compare Binary
 '{~}checkOdometer *beginning Odometer should not be greater than ending odometer
 '{~}CheckDays *day greater than 0 no more than 45
 
-'[]Calculations:
+'[~]Calculations:
 '[~]Daily Charge is 15$ per day
 '[~]mileage: first 200mi free, 201-500 12cents/mi, > 500mi 10cents/mi
 '{~}all calc done in miles convert if Kilometer radio button is selected
 '{~}1 Kilometer = 0.62 miles
-'[]AAA members receive 5% discount
-'[]senior citizens receive 3% discount
-'{}both discounts can be used at once
+'[~]AAA members receive 5% discount
+'[~]senior citizens receive 3% discount
+'{~}both discounts can be used at once
 
-'[]Display:
+'[~]Display:
 '{~}distance traveled in miles
 '{~}total mileage charge as currency
 '{~}total daily charge as currency
-'{}total discount as currency
-'{}total charges as currency
+'{~}total discount as currency
+'{~}total charges as currency
 
 '[]Summary:
 '{}only display if at least one rental has been completed
-'{}display total # of customers
-'{}display total distance in miles
-'{}display total charges
-'{}clear form **do not clear summary totals**
+'{~}display total # of customers
+'{~}display total distance in miles
+'{~}display total charges
+'{~}clear form **do not clear summary totals**
 
 '[~]Set Defaults and Clear
 '[]Add Close program confirmation box
 
 Public Class RentalForm
+    Dim totalRentals As Integer = 0
+    Dim totalNumberOfMiles As Double = 0
+    Dim totalProfits As Double = 0
     'Custom Methods
     ''' <summary>
     ''' Clears all Input and Output text boxes, Un-checks discounts, checks Miles button
@@ -191,6 +194,8 @@ Public Class RentalForm
     Function CalculateDistanceTraveled(startPoint As Double, endPoint As Double) As Double
         Dim distance As Double
         distance = System.Math.Round(endPoint - startPoint, 2, MidpointRounding.ToEven)
+        'add to summary total
+        totalNumberOfMiles = totalNumberOfMiles + distance
         Return distance
     End Function
 
@@ -277,6 +282,17 @@ Public Class RentalForm
         'update display text boxes
         TotalDiscountTextBox.Text = FormatCurrency(discountTotal)
         TotalChargeTextBox.Text = FormatCurrency(totalChargeAppliedDiscount)
+        'add to summary total
+        totalProfits = totalProfits + totalChargeAppliedDiscount
+    End Sub
+
+    Sub ReportSummary()
+        Dim summaryMessage As String
+        summaryMessage = "Today's Totals:" & vbCrLf & vbCrLf &
+                         $"Total customers = {totalRentals}" & vbCrLf &
+                         $"Total miles driven = {totalNumberOfMiles} mi" & vbCrLf &
+                         $"Total profits = {FormatCurrency(totalProfits)}"
+        MsgBox(summaryMessage)
     End Sub
 
     'Event Handlers
@@ -297,7 +313,8 @@ Public Class RentalForm
                     Dim totalCharge As Double
                     totalCharge = CalculateAllCharges()
                     DetermineDiscounts(totalCharge)
-
+                    'add to summary totals
+                    totalRentals += 1
                 End If
             End If
         End If
@@ -305,5 +322,8 @@ Public Class RentalForm
     End Sub
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         SetDefaults()
+    End Sub
+    Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles SummaryButton.Click
+        ReportSummary()
     End Sub
 End Class
