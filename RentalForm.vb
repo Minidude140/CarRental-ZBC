@@ -30,8 +30,8 @@ Option Compare Binary
 '{~}total discount as currency
 '{~}total charges as currency
 
-'[]Summary:
-'{}only display if at least one rental has been completed
+'[~]Summary:
+'{~}only display if at least one rental has been completed
 '{~}display total # of customers
 '{~}display total distance in miles
 '{~}display total charges
@@ -286,6 +286,9 @@ Public Class RentalForm
         totalProfits = totalProfits + totalChargeAppliedDiscount
     End Sub
 
+    ''' <summary>
+    ''' Creates a string from global total data and messages the user
+    ''' </summary>
     Sub ReportSummary()
         Dim summaryMessage As String
         summaryMessage = "Today's Totals:" & vbCrLf & vbCrLf &
@@ -298,6 +301,7 @@ Public Class RentalForm
     'Event Handlers
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
+        SummaryButton.Enabled = False
     End Sub
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
@@ -315,6 +319,7 @@ Public Class RentalForm
                     DetermineDiscounts(totalCharge)
                     'add to summary totals
                     totalRentals += 1
+                    SummaryButton.Enabled = True
                 End If
             End If
         End If
