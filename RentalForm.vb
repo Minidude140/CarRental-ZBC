@@ -219,18 +219,14 @@ Public Class RentalForm
     ''' <summary>
     ''' Calculates all charges based on text box info.  Should only Run if input already validated 
     ''' </summary>
-    Sub CalculateAllCharges()
+    Function CalculateAllCharges() As Double
         Dim daysCharge As Integer
         Dim startOdometer As Double = CDbl(Me.BeginOdometerTextBox.Text)
         Dim endOdometer As Double = CDbl(Me.EndOdometerTextBox.Text)
         Dim distanceDriven As Double
         Dim mileageCharge As Double
         Const kilometerToMilesRatio As Double = 0.62
-        Const AAAMemberDiscount As Double = 0.05
-        Const seniorCitizensDiscount As Double = 0.03
         Dim totalCharge As Double
-        Dim totalChargeAppliedDiscount As Double
-        Dim discountTotal As Double
 
         If KilometersradioButton.Checked = True Then
             'convert to miles
@@ -249,14 +245,38 @@ Public Class RentalForm
         MileageChargeTextBox.Text = FormatCurrency(mileageCharge)
         'Add to total charge
         totalCharge = daysCharge + mileageCharge
-        'determine discounts
-        If AAAcheckbox.Checked = True Then
-            'AAA discount
-        End If
-        If Seniorcheckbox.Checked = True Then
-            'senior discount
-        End If
+        Return totalCharge
+    End Function
 
+    ''' <summary>
+    ''' Determines the total cost and amount saved dependent on discount checkboxes
+    ''' </summary>
+    ''' <param name="charge"></param>
+    Sub DetermineDiscounts(charge As Double)
+        Const AAAMemberDiscount As Double = 0.05
+        Const seniorCitizensDiscount As Double = 0.03
+        Dim totalChargeAppliedDiscount As Double
+        Dim discountTotal As Double
+
+        'determine discounts
+        Select Case True
+            Case AAAcheckbox.Checked = True And Seniorcheckbox.Checked = True
+                'both discounts
+                totalChargeAppliedDiscount = charge - (charge * (AAAMemberDiscount + seniorCitizensDiscount))
+            Case AAAcheckbox.Checked = True
+                'AAA discount
+                totalChargeAppliedDiscount = charge - (charge * AAAMemberDiscount)
+            Case Seniorcheckbox.Checked = True
+                'senior discount
+                totalChargeAppliedDiscount = charge - (charge * seniorCitizensDiscount)
+            Case Else
+                totalChargeAppliedDiscount = charge
+        End Select
+        'find total savings
+        discountTotal = charge - totalChargeAppliedDiscount
+        'update display text boxes
+        TotalDiscountTextBox.Text = FormatCurrency(discountTotal)
+        TotalChargeTextBox.Text = FormatCurrency(totalChargeAppliedDiscount)
     End Sub
 
     'Event Handlers
@@ -274,7 +294,10 @@ Public Class RentalForm
                 'Check days
                 If CheckDays() Then
                     'Run calculations
-                    CalculateAllCharges()
+                    Dim totalCharge As Double
+                    totalCharge = CalculateAllCharges()
+                    DetermineDiscounts(totalCharge)
+
                 End If
             End If
         End If
