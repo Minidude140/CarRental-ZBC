@@ -231,13 +231,13 @@ Public Class RentalForm
         'already in miles or now converted
         'calculate days charge and update output text box
         daysCharge = CalculateDaysCharge(CInt(Me.DaysTextBox.Text))
-        DayChargeTextBox.Text = CStr(daysCharge)
+        DayChargeTextBox.Text = FormatCurrency(daysCharge)
         'Determine distance driven
         distanceDriven = CalculateDistanceTraveled(startOdometer, endOdometer)
-        TotalMilesTextBox.Text = CStr(distanceDriven)
+        TotalMilesTextBox.Text = CStr(distanceDriven) & " mi"
         'Calculate millage charge and update output text box
         mileageCharge = CalculateMileageCharge(distanceDriven)
-        MileageChargeTextBox.Text = CStr(mileageCharge)
+        MileageChargeTextBox.Text = FormatCurrency(mileageCharge)
     End Sub
 
     'Event Handlers
