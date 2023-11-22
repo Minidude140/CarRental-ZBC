@@ -17,16 +17,16 @@ Option Compare Binary
 '[]Calculations:
 '[~]Daily Charge is 15$ per day
 '[~]mileage: first 200mi free, 201-500 12cents/mi, > 500mi 10cents/mi
-'{}all calc done in miles convert if Kilometer radio button is selected
-'{}1 Kilometer = 0.62 miles
+'{~}all calc done in miles convert if Kilometer radio button is selected
+'{~}1 Kilometer = 0.62 miles
 '[]AAA members receive 5% discount
 '[]senior citizens receive 3% discount
 '{}both discounts can be used at once
 
 '[]Display:
-'{}distance traveled in miles
-'{}total mileage charge as currency
-'{}total daily charge as currency
+'{~}distance traveled in miles
+'{~}total mileage charge as currency
+'{~}total daily charge as currency
 '{}total discount as currency
 '{}total charges as currency
 
@@ -188,9 +188,9 @@ Public Class RentalForm
     ''' <param name="startPoint"></param>
     ''' <param name="endPoint"></param>
     ''' <returns></returns>
-    Function CalculateDistanceTraveled(startPoint As Integer, endPoint As Integer) As Integer
-        Dim distance As Integer
-        distance = endPoint - startPoint
+    Function CalculateDistanceTraveled(startPoint As Double, endPoint As Double) As Double
+        Dim distance As Double
+        distance = System.Math.Round(endPoint - startPoint, 2, MidpointRounding.ToEven)
         Return distance
     End Function
 
@@ -199,7 +199,7 @@ Public Class RentalForm
     ''' </summary>
     ''' <param name="distance"></param>
     ''' <returns></returns>
-    Function CalculateMileageCharge(distance As Integer) As Double
+    Function CalculateMileageCharge(distance As Double) As Double
         Dim mileageCharge As Double
         'calculate charge based on distance here
         Select Case distance
@@ -221,12 +221,15 @@ Public Class RentalForm
     ''' </summary>
     Sub CalculateAllCharges()
         Dim daysCharge As Integer
-        Dim startOdometer As Integer = CInt(Me.BeginOdometerTextBox.Text)
-        Dim endOdometer As Integer = CInt(Me.EndOdometerTextBox.Text)
-        Dim distanceDriven As Integer
+        Dim startOdometer As Double = CDbl(Me.BeginOdometerTextBox.Text)
+        Dim endOdometer As Double = CDbl(Me.EndOdometerTextBox.Text)
+        Dim distanceDriven As Double
         Dim mileageCharge As Double
+        Const kilometerToMilesRatio As Double = 0.62
         If KilometersradioButton.Checked = True Then
             'convert to miles
+            startOdometer = startOdometer / kilometerToMilesRatio
+            endOdometer = endOdometer / kilometerToMilesRatio
         End If
         'already in miles or now converted
         'calculate days charge and update output text box
