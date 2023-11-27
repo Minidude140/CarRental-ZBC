@@ -38,7 +38,7 @@ Option Compare Binary
 '{~}clear form **do not clear summary totals**
 
 '[~]Set Defaults and Clear
-'[]Add Close program confirmation box
+'[~]Add Close program confirmation box
 
 Public Class RentalForm
     Dim totalRentals As Integer = 0
@@ -304,7 +304,13 @@ Public Class RentalForm
         SummaryButton.Enabled = False
     End Sub
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
+        'Message Box Returns user selection 
+        Select Case MsgBox("Are you sure you want to exit?", MsgBoxStyle.OkCancel)
+            Case = MsgBoxResult.Ok
+                Me.Close()
+            Case = MsgBoxResult.Cancel
+                'do nothing
+        End Select
     End Sub
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         If ValidateUserInput() Then
